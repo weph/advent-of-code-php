@@ -1,4 +1,6 @@
 /.phpunit.cache/
+/input/*
 /vendor/
 /composer.lock
 /phpunit.xml
+/SESSION_TOKEN
