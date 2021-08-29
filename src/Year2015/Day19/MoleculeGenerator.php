@@ -43,10 +43,13 @@ final class MoleculeGenerator
 
     public function makeMedicine(string $input, string $expected, int $steps = 0, array $intersecting = []): int
     {
-        printf("%s%s %s\n", str_pad('', $steps, '    '), $input, json_encode($intersecting));
-
-//        $input = substr($input, $offset);
-//        $expected = substr($expected, $offset);
+//        printf(
+//            "%s%s [Next: %s] %s\n",
+//            str_pad('', $steps, '    '),
+//            $input,
+//            substr($expected, 0, 10),
+//            json_encode($intersecting)
+//        );
 
         $lastThree = array_slice($intersecting, -2);
 //        if (count($lastThree) === 2 && $lastThree[1] < $lastThree[0]) {
@@ -116,8 +119,8 @@ final class MoleculeGenerator
 
         $result = [];
 
-        for ($i = 0; $i < $strlen; $i++) {
-            foreach ($this->mapping as $mapping) {
+        foreach ($this->mapping as $mapping) {
+            for ($i = 0; $i < $strlen; $i++) {
                 $sublen = strlen($mapping[0]);
 
                 if (substr($input, $i, $sublen) !== $mapping[0]) {
@@ -146,6 +149,27 @@ final class MoleculeGenerator
         }
 
         return $length;
+    }
+
+    public function generateFirst(string $input): array
+    {
+        $result = [];
+
+        foreach ($this->mapping as $mapping) {
+            $sublen = strlen($mapping[0]);
+
+            if (strpos($input, $mapping[0]) !== 0) {
+                continue;
+            }
+
+            if (ctype_lower($input[$sublen] ?? '')) {
+                continue;
+            }
+
+            $result[] = $mapping[1] . substr($input, $sublen);
+        }
+
+        return $result;
     }
 
     private function replacements(string $input, string $from, string $to): array
