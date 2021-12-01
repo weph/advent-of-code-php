@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Common;
 
+use RuntimeException;
+use function array_slice;
+
 final class Input
 {
     private string $input;
@@ -54,5 +57,23 @@ final class Input
     public function lines(): array
     {
         return explode("\n", trim($this->input));
+    }
+
+    /**
+     * @return list<list<string>>
+     */
+    public function matchLines(string $regex): array
+    {
+        $result = [];
+
+        foreach ($this->lines() as $index => $line) {
+            if (preg_match($regex, $line, $matches) !== 1) {
+                throw new RuntimeException(sprintf('Cannot match line %d: %s with pattern %s', $index, $line, $regex));
+            }
+
+            $result[] = array_slice($matches, 1);
+        }
+
+        return $result;
     }
 }
