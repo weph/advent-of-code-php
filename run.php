@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/vendor/autoload.php';
 
+use AdventOfCode\Common\Input;
 use AdventOfCode\Common\InputLoader;
 use GuzzleHttp\Psr7\HttpFactory;
 
@@ -53,7 +54,7 @@ foreach (puzzles() as $puzzle) {
         file_put_contents($inputFile, $inputLoader->load($puzzle->year, $puzzle->day));
     }
 
-    $input = file_get_contents($inputFile);
+    $input = Input::fromFile($inputFile);
 
     $solver = $puzzle->solver();
     printf("# %d-%02d\n", $puzzle->year, $puzzle->day);

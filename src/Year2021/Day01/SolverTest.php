@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Year2021\Day01;
 
+use AdventOfCode\Common\Input;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -19,7 +20,7 @@ final class SolverTest extends TestCase
     {
         self::assertSame(
             7,
-            $this->subject->partOne(implode("\n", [199, 200, 208, 210, 200, 207, 240, 269, 260, 263]))
+            $this->subject->partOne(Input::fromArray([199, 200, 208, 210, 200, 207, 240, 269, 260, 263]))
         );
     }
 
@@ -30,7 +31,7 @@ final class SolverTest extends TestCase
     {
         self::assertSame(
             5,
-            $this->subject->partTwo(implode("\n", [199, 200, 208, 210, 200, 207, 240, 269, 260, 263]))
+            $this->subject->partTwo(Input::fromArray([199, 200, 208, 210, 200, 207, 240, 269, 260, 263]))
         );
     }
 

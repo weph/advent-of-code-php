@@ -3,16 +3,15 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Year2021\Day01;
 
+use AdventOfCode\Common\Input;
 use function array_slice;
 use function count;
 
 final class Solver
 {
-    public function partOne(string $input): int
+    public function partOne(Input $input): int
     {
-        $measurements = array_map('\intval', explode("\n", $input));
-
-        return self::numberOfIncrements($measurements);
+        return self::numberOfIncrements($input->integers());
     }
 
     private static function numberOfIncrements(array $values): int
@@ -29,10 +28,9 @@ final class Solver
         return $increased;
     }
 
-    public function partTwo(string $input): int
+    public function partTwo(Input $input): int
     {
-        $values = array_map('\intval', explode("\n", $input));
-
+        $values = $input->integers();
         $slices = array_map(static fn(int $i) => array_sum(array_slice($values, $i, 3)), range(0, count($values)));
 
         return self::numberOfIncrements($slices);

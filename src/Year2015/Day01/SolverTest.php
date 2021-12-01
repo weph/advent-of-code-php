@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Year2015\Day01;
 
+use AdventOfCode\Common\Input;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -19,7 +20,7 @@ final class SolverTest extends TestCase
      */
     public function partOne(string $input, int $expected): void
     {
-        self::assertSame($expected, $this->subject->partOne($input));
+        self::assertSame($expected, $this->subject->partOne(Input::fromString($input)));
     }
 
     public function partOneExamples(): iterable
@@ -41,7 +42,7 @@ final class SolverTest extends TestCase
      */
     public function partTwo(string $input, int $expected): void
     {
-        self::assertSame($expected, $this->subject->partTwo($input));
+        self::assertSame($expected, $this->subject->partTwo(Input::fromString($input)));
     }
 
     public function partTwoExamples(): iterable

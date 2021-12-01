@@ -3,18 +3,19 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Year2015\Day02;
 
+use AdventOfCode\Common\Input;
 use function array_slice;
 
 final class Solver
 {
-    public function partOne(string $input): int
+    public function partOne(Input $input): int
     {
-        return array_sum(array_map([$this, 'wrappingPaperSize'], explode("\n", trim($input))));
+        return array_sum(array_map([$this, 'wrappingPaperSize'], $input->lines()));
     }
 
-    public function partTwo(string $input): int
+    public function partTwo(Input $input): int
     {
-        return array_sum(array_map([$this, 'ribbonLength'], explode("\n", trim($input))));
+        return array_sum(array_map([$this, 'ribbonLength'], $input->lines()));
     }
 
     private function ribbonLength(string $input): int
