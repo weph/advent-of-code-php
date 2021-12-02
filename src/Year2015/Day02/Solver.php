@@ -4,9 +4,10 @@ declare(strict_types=1);
 namespace AdventOfCode\Year2015\Day02;
 
 use AdventOfCode\Common\Input;
+use AdventOfCode\Common\PuzzleSolver;
 use function array_slice;
 
-final class Solver
+final class Solver implements PuzzleSolver
 {
     public function partOne(Input $input): int
     {

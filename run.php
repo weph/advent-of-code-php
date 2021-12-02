@@ -1,10 +1,11 @@
 <?php
 declare(strict_types=1);
 
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__.'/vendor/autoload.php';
 
 use AdventOfCode\Common\Input;
 use AdventOfCode\Common\InputLoader;
+use AdventOfCode\Common\PuzzleSolver;
 use GuzzleHttp\Psr7\HttpFactory;
 
 $inputLoader = new InputLoader(new GuzzleHttp\Client(), new HttpFactory(), file_get_contents('SESSION_TOKEN'));
@@ -15,18 +16,13 @@ class Puzzle
 
     public int $day;
 
-    public string $solverClass;
+    public PuzzleSolver $solver;
 
-    public function __construct(int $year, int $day, string $solverClass)
+    public function __construct(int $year, int $day, PuzzleSolver $solver)
     {
-        $this->year        = $year;
-        $this->day         = $day;
-        $this->solverClass = $solverClass;
-    }
-
-    public function solver(): object
-    {
-        return new $this->solverClass;
+        $this->year = $year;
+        $this->day = $day;
+        $this->solver = $solver;
     }
 }
 
@@ -43,7 +39,13 @@ function puzzles(): iterable
                 continue;
             }
 
-            yield new Puzzle($year, $day, $className);
+            /** @psalm-suppress MixedMethodCall */
+            $solver = new $className;
+            if (!$solver instanceof PuzzleSolver) {
+                throw new RuntimeException(sprintf('Class %s does not implement %s', $className, PuzzleSolver::class));
+            }
+
+            yield new Puzzle($year, $day, $solver);
         }
     }
 }
@@ -56,8 +58,7 @@ foreach (puzzles() as $puzzle) {
 
     $input = Input::fromFile($inputFile);
 
-    $solver = $puzzle->solver();
     printf("# %d-%02d\n", $puzzle->year, $puzzle->day);
-    printf("Part One: %s\n", $solver->partOne($input));
-    printf("Part Two: %s\n\n", $solver->partTwo($input));
+    printf("Part One: %s\n", $puzzle->solver->partOne($input));
+    printf("Part Two: %s\n\n", $puzzle->solver->partTwo($input));
 }

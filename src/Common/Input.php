@@ -20,12 +20,15 @@ final class Input
         return new self($input);
     }
 
+    /**
+     * @param array<scalar> $input
+     */
     public static function fromArray(array $input): self
     {
         return new self(implode("\n", $input));
     }
 
-    public static function fromFile(string $filename)
+    public static function fromFile(string $filename): self
     {
         return new self(file_get_contents($filename));
     }
@@ -60,7 +63,7 @@ final class Input
     }
 
     /**
-     * @return list<list<string>>
+     * @return list<array<string>>
      */
     public function matchLines(string $regex): array
     {

@@ -4,16 +4,20 @@ declare(strict_types=1);
 namespace AdventOfCode\Year2020\Day03;
 
 use AdventOfCode\Common\Input;
+use AdventOfCode\Common\PuzzleSolver;
 use function count;
 use function strlen;
 
-final class Solver
+final class Solver implements PuzzleSolver
 {
     public function partOne(Input $input): int
     {
         return $this->countTrees($input->lines(), 3, 1);
     }
 
+    /**
+     * @param list<string> $input
+     */
     private function countTrees(array $input, int $mx, int $my): int
     {
         $rows = count($input);

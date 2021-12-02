@@ -4,10 +4,11 @@ declare(strict_types=1);
 namespace AdventOfCode\Year2020\Day01;
 
 use AdventOfCode\Common\Input;
+use AdventOfCode\Common\PuzzleSolver;
 use LogicException;
 use function count;
 
-final class Solver
+final class Solver implements PuzzleSolver
 {
     public function partOne(Input $input): int
     {

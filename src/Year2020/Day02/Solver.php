@@ -4,9 +4,10 @@ declare(strict_types=1);
 namespace AdventOfCode\Year2020\Day02;
 
 use AdventOfCode\Common\Input;
+use AdventOfCode\Common\PuzzleSolver;
 use function ord;
 
-final class Solver
+final class Solver implements PuzzleSolver
 {
     private const REGEX = '/^(\d+)-(\d+) (.): (.+)$/';
 

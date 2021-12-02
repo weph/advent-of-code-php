@@ -22,6 +22,9 @@ final class SolverTest extends TestCase
         self::assertSame($expected, $this->subject->partOne(Input::fromString($input)));
     }
 
+    /**
+     * @return iterable<int, array{0: string, 1: int}>
+     */
     public function partOneExamples(): iterable
     {
         yield ['2x3x4', 58];
@@ -38,6 +41,9 @@ final class SolverTest extends TestCase
         self::assertSame($expected, $this->subject->partTwo(Input::fromString($input)));
     }
 
+    /**
+     * @return iterable<int, array{0: string, 1: int}>
+     */
     public function partTwoExamples(): iterable
     {
         yield ['2x3x4', 34];

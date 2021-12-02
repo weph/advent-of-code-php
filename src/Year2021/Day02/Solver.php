@@ -4,8 +4,9 @@ declare(strict_types=1);
 namespace AdventOfCode\Year2021\Day02;
 
 use AdventOfCode\Common\Input;
+use AdventOfCode\Common\PuzzleSolver;
 
-final class Solver
+final class Solver implements PuzzleSolver
 {
     private const REGEX = '/^(.+) (\d+)$/';
 
