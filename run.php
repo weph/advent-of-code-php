@@ -10,19 +10,13 @@ use GuzzleHttp\Psr7\HttpFactory;
 
 $inputLoader = new InputLoader(new GuzzleHttp\Client(), new HttpFactory(), file_get_contents('SESSION_TOKEN'));
 
-class Puzzle
+final class Puzzle
 {
-    public int $year;
-
-    public int $day;
-
-    public PuzzleSolver $solver;
-
-    public function __construct(int $year, int $day, PuzzleSolver $solver)
-    {
-        $this->year = $year;
-        $this->day = $day;
-        $this->solver = $solver;
+    public function __construct(
+        public readonly int $year,
+        public readonly int $day,
+        public readonly PuzzleSolver $solver
+    ) {
     }
 }
 

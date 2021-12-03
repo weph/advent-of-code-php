@@ -10,17 +10,11 @@ final class InputLoader
 {
     private const BASE_URL = 'https://adventofcode.com';
 
-    private ClientInterface $client;
-
-    private RequestFactoryInterface $requestFactory;
-
-    private string $sessionToken;
-
-    public function __construct(ClientInterface $client, RequestFactoryInterface $requestFactory, string $sessionToken)
-    {
-        $this->client         = $client;
-        $this->requestFactory = $requestFactory;
-        $this->sessionToken   = $sessionToken;
+    public function __construct(
+        private ClientInterface $client,
+        private RequestFactoryInterface $requestFactory,
+        private string $sessionToken
+    ) {
     }
 
     public function load(int $year, int $day): string

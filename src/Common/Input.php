@@ -8,11 +8,8 @@ use function array_slice;
 
 final class Input
 {
-    private string $input;
-
-    public function __construct(string $input)
+    public function __construct(private string $input)
     {
-        $this->input = $input;
     }
 
     public static function fromString(string $input): self
