@@ -6,12 +6,18 @@ namespace AdventOfCode\Common;
 use RuntimeException;
 use function array_slice;
 
+/**
+ * @psalm-immutable
+ */
 final class Input
 {
     public function __construct(private string $input)
     {
     }
 
+    /**
+     * @psalm-pure
+     */
     public static function fromString(string $input): self
     {
         return new self($input);
@@ -28,6 +34,11 @@ final class Input
     public static function fromFile(string $filename): self
     {
         return new self(file_get_contents($filename));
+    }
+
+    public function asInt(): int
+    {
+        return (int)$this->input;
     }
 
     public function raw(): string
@@ -75,5 +86,14 @@ final class Input
         }
 
         return $result;
+    }
+
+    /**
+     * @param non-empty-string $separator
+     * @return Collection<Input>
+     */
+    public function split(string $separator): Collection
+    {
+        return new Collection(array_map([self::class, 'fromString'], explode($separator, $this->input)));
     }
 }
