@@ -5,6 +5,7 @@ namespace AdventOfCode\Common;
 
 use Exception;
 use function array_slice;
+use function count;
 
 /**
  * @template T
@@ -32,6 +33,11 @@ final class Collection
     public function asArray(): array
     {
         return $this->items;
+    }
+
+    public function count(): int
+    {
+        return count($this->items);
     }
 
     /**

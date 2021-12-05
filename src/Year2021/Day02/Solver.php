@@ -17,7 +17,7 @@ final class Solver implements PuzzleSolver
         $position = 0;
         $depth = 0;
 
-        foreach ($instructions as $instruction) {
+        foreach ($instructions->asArray() as $instruction) {
             match ($instruction[0]) {
                 'forward' => $position += (int)$instruction[1],
                 'down' => $depth += (int)$instruction[1],
@@ -36,7 +36,7 @@ final class Solver implements PuzzleSolver
         $depth = 0;
         $aim = 0;
 
-        foreach ($instructions as $instruction) {
+        foreach ($instructions->asArray() as $instruction) {
             switch ($instruction[0]) {
                 case 'forward':
                     $position += (int)$instruction[1];

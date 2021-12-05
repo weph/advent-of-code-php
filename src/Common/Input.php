@@ -71,9 +71,9 @@ final class Input
     }
 
     /**
-     * @return list<array<string>>
+     * @return Collection<array<string>>
      */
-    public function matchLines(string $regex): array
+    public function matchLines(string $regex): Collection
     {
         $result = [];
 
@@ -85,7 +85,7 @@ final class Input
             $result[] = array_slice($matches, 1);
         }
 
-        return $result;
+        return new Collection($result);
     }
 
     /**

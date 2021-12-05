@@ -13,19 +13,15 @@ final class Solver implements PuzzleSolver
 
     public function partOne(Input $input): int
     {
-        $entries = $input->matchLines(self::REGEX);
-
-        $valid = 0;
-        foreach ($entries as $entry) {
-            if ($this->validOne((int)$entry[0], (int)$entry[1], $entry[2], $entry[3])) {
-                ++$valid;
-            }
-        }
-
-        return $valid;
+        return $input->matchLines(self::REGEX)
+            ->filter(static fn(array $v) => self::validOne((int)$v[0], (int)$v[1], $v[2], $v[3]))
+            ->count();
     }
 
-    private function validOne(int $min, int $max, string $char, string $password): bool
+    /**
+     * @psalm-pure
+     */
+    private static function validOne(int $min, int $max, string $char, string $password): bool
     {
         $ord = ord($char);
         $chars = count_chars($password);
@@ -35,19 +31,15 @@ final class Solver implements PuzzleSolver
 
     public function partTwo(Input $input): int
     {
-        $entries = $input->matchLines(self::REGEX);
-
-        $valid = 0;
-        foreach ($entries as $entry) {
-            if ($this->validTwo((int)$entry[0], (int)$entry[1], $entry[2], $entry[3])) {
-                ++$valid;
-            }
-        }
-
-        return $valid;
+        return $input->matchLines(self::REGEX)
+            ->filter(static fn(array $v) => self::validTwo((int)$v[0], (int)$v[1], $v[2], $v[3]))
+            ->count();
     }
 
-    private function validTwo(int $p1, int $p2, string $char, string $password): bool
+    /**
+     * @psalm-pure
+     */
+    private static function validTwo(int $p1, int $p2, string $char, string $password): bool
     {
         return $password[$p1 - 1] === $char xor $password[$p2 - 1] === $char;
     }
