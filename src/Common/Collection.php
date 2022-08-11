@@ -86,6 +86,16 @@ final class Collection
     }
 
     /**
+     * @template RT
+     * @param pure-Closure(array<RT>,T):array<RT> $func
+     * @return self<RT>
+     */
+    public function reduce(callable $func): self
+    {
+        return new self(array_values(array_reduce($this->items, $func, [])));
+    }
+
+    /**
      * @return self<T>
      */
     public function tail(): Collection
