@@ -3,25 +3,25 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Year2021\Day02;
 
+use AdventOfCode\Common\Collection;
 use AdventOfCode\Common\Input;
 use AdventOfCode\Common\PuzzleSolver;
 
 final class Solver implements PuzzleSolver
 {
-    private const REGEX = '/^(.+) (\d+)$/';
-
     public function partOne(Input $input): int
     {
-        $instructions = $input->matchLines(self::REGEX);
+        $instructions = (new Collection($input->lines()))
+            ->map(static fn(string $v) => Instruction::fromString($v));
 
         $position = 0;
         $depth = 0;
 
         foreach ($instructions->asArray() as $instruction) {
-            match ($instruction[0]) {
-                'forward' => $position += (int)$instruction[1],
-                'down' => $depth += (int)$instruction[1],
-                'up' => $depth -= (int)$instruction[1],
+            match ($instruction->direction) {
+                Direction::forward => $position += $instruction->length,
+                Direction::down => $depth += $instruction->length,
+                Direction::up => $depth -= $instruction->length,
             };
         }
 
@@ -30,25 +30,26 @@ final class Solver implements PuzzleSolver
 
     public function partTwo(Input $input): int
     {
-        $instructions = $input->matchLines(self::REGEX);
+        $instructions = (new Collection($input->lines()))
+            ->map(static fn(string $v) => Instruction::fromString($v));
 
         $position = 0;
         $depth = 0;
         $aim = 0;
 
         foreach ($instructions->asArray() as $instruction) {
-            switch ($instruction[0]) {
-                case 'forward':
-                    $position += (int)$instruction[1];
-                    $depth += $aim * (int)$instruction[1];
+            switch ($instruction->direction) {
+                case Direction::forward:
+                    $position += $instruction->length;
+                    $depth += $aim * $instruction->length;
                     break;
 
-                case 'down':
-                    $aim += (int)$instruction[1];
+                case Direction::down:
+                    $aim += $instruction->length;
                     break;
 
-                case 'up':
-                    $aim -= (int)$instruction[1];
+                case Direction::up:
+                    $aim -= $instruction->length;
                     break;
             }
         }
