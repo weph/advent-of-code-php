@@ -15,16 +15,10 @@ use function count;
 final class Collection
 {
     /**
-     * @var list<T>
-     */
-    private array $items;
-
-    /**
      * @param list<T> $items
      */
-    public function __construct(array $items)
+    public function __construct(private readonly array $items)
     {
-        $this->items = $items;
     }
 
     /**

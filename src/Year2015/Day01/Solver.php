@@ -13,7 +13,6 @@ final class Solver implements PuzzleSolver
 
     public function partOne(Input $input): int
     {
-        /** @var array<int, int> $counts */
         $counts = count_chars($input->raw());
 
         return $counts[ord('(')] - $counts[ord(')')];

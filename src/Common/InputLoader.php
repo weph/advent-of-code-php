@@ -11,9 +11,9 @@ final class InputLoader
     private const BASE_URL = 'https://adventofcode.com';
 
     public function __construct(
-        private ClientInterface $client,
-        private RequestFactoryInterface $requestFactory,
-        private string $sessionToken
+        private readonly ClientInterface $client,
+        private readonly RequestFactoryInterface $requestFactory,
+        private readonly string $sessionToken
     ) {
     }
 

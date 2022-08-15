@@ -11,7 +11,7 @@ use function array_slice;
  */
 final class Input
 {
-    public function __construct(private string $input)
+    public function __construct(private readonly string $input)
     {
     }
 
