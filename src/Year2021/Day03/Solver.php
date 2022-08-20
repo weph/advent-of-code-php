@@ -12,7 +12,9 @@ final class Solver implements PuzzleSolver
 {
     public function partOne(Input $input): int
     {
-        return $this->gammaRate($input->lines()) * $this->epsilonRate($input->lines());
+        $values = $input->lines()->asArray();
+
+        return $this->gammaRate($values) * $this->epsilonRate($values);
     }
 
     /**
@@ -69,7 +71,7 @@ final class Solver implements PuzzleSolver
 
     public function partTwo(Input $input): int
     {
-        $values = $input->lines();
+        $values = $input->lines()->asArray();
 
         return $this->oxygenGeneratorRating($values) * $this->co2ScrubberRating($values);
     }

@@ -59,15 +59,15 @@ final class Input
      */
     public function integers(): array
     {
-        return array_map('\intval', $this->lines());
+        return array_map('\intval', $this->lines()->asArray());
     }
 
     /**
-     * @return list<string>
+     * @return Collection<string>
      */
-    public function lines(): array
+    public function lines(): Collection
     {
-        return explode("\n", trim($this->input));
+        return new Collection(explode("\n", trim($this->input)));
     }
 
     /**
@@ -77,7 +77,7 @@ final class Input
     {
         $result = [];
 
-        foreach ($this->lines() as $index => $line) {
+        foreach ($this->lines()->asArray() as $index => $line) {
             if (preg_match($regex, $line, $matches) !== 1) {
                 throw new RuntimeException(sprintf('Cannot match line %d: %s with pattern %s', $index, $line, $regex));
             }

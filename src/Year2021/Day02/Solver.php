@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Year2021\Day02;
 
-use AdventOfCode\Common\Collection;
 use AdventOfCode\Common\Input;
 use AdventOfCode\Common\PuzzleSolver;
 
@@ -11,7 +10,7 @@ final class Solver implements PuzzleSolver
 {
     public function partOne(Input $input): int
     {
-        $instructions = (new Collection($input->lines()))
+        $instructions = $input->lines()
             ->map(static fn(string $v) => Instruction::fromString($v));
 
         $position = 0;
@@ -30,7 +29,7 @@ final class Solver implements PuzzleSolver
 
     public function partTwo(Input $input): int
     {
-        $instructions = (new Collection($input->lines()))
+        $instructions = $input->lines()
             ->map(static fn(string $v) => Instruction::fromString($v));
 
         $position = 0;

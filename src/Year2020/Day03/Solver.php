@@ -12,7 +12,7 @@ final class Solver implements PuzzleSolver
 {
     public function partOne(Input $input): int
     {
-        return $this->countTrees($input->lines(), 3, 1);
+        return $this->countTrees($input->lines()->asArray(), 3, 1);
     }
 
     /**
@@ -39,7 +39,7 @@ final class Solver implements PuzzleSolver
 
     public function partTwo(Input $input): int
     {
-        $map = $input->lines();
+        $map = $input->lines()->asArray();
 
         return $this->countTrees($map, 1, 1) *
             $this->countTrees($map, 3, 1) *
