@@ -24,6 +24,16 @@ final class SolvedPuzzles
         }
     }
 
+    public function for(int $year, int $day): Puzzle
+    {
+        $solver = $this->solverFor($year, $day);
+        if ($solver === null) {
+            throw new RuntimeException(sprintf('No solver found for puzzle %d-%d', $year, $day));
+        }
+
+        return new Puzzle($year, $day, $solver);
+    }
+
     private function solverFor(int $year, int $day): ?PuzzleSolver
     {
         $className = sprintf('AdventOfCode\\Year%s\\Day%02d\\Solver', $year, $day);
