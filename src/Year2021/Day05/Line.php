@@ -3,47 +3,46 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Year2021\Day05;
 
+use AdventOfCode\Common\Point;
+
 /**
  * @psalm-immutable
  */
 final class Line
 {
-    public function __construct(
-        private readonly int $x1,
-        private readonly int $y1,
-        private readonly int $x2,
-        private readonly int $y2
-    ) {
+    public function __construct(private readonly Point $start, private readonly Point $end)
+    {
     }
 
     /**
-     * @return list<string>
+     * @return list<Point>
      */
     public function points(): array
     {
         if ($this->isVertical()) {
             /** @psalm-suppress ImpureFunctionCall */
-            return array_map(fn(int $x) => sprintf('%dx%d', $x, $this->y1), range($this->x1, $this->x2));
+            return array_map(fn(int $x) => new Point($x, $this->start->y), range($this->start->x, $this->end->x));
         }
 
         if ($this->isHorizontal()) {
             /** @psalm-suppress ImpureFunctionCall */
-            return array_map(fn(int $y) => sprintf('%dx%d', $this->x1, $y), range($this->y1, $this->y2));
+            return array_map(fn(int $y) => new Point($this->start->x, $y), range($this->start->y, $this->end->y));
         }
 
-        $m = ($this->y2 - $this->y1) / ($this->x2 - $this->x1);
-        $b = $this->y2 - $m * $this->x2;
+        $m = ($this->end->y - $this->start->y) / ($this->end->x - $this->start->x);
+        $b = $this->end->y - $m * $this->end->x;
 
-        return array_map(static fn(int $x) => sprintf('%dx%d', $x, $m * $x + $b), range($this->x1, $this->x2));
+        /** @psalm-suppress ImpureFunctionCall */
+        return array_map(static fn(int $x) => new Point($x, (int)($m * $x + $b)), range($this->start->x, $this->end->x));
     }
 
     public function isVertical(): bool
     {
-        return $this->y1 === $this->y2;
+        return $this->start->y === $this->end->y;
     }
 
     public function isHorizontal(): bool
     {
-        return $this->x1 === $this->x2;
+        return $this->start->x === $this->end->x;
     }
 }

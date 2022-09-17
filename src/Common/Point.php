@@ -5,6 +5,9 @@ namespace AdventOfCode\Common;
 
 use RuntimeException;
 
+/**
+ * @psalm-immutable
+ */
 final class Point
 {
     public function __construct(public readonly int $x, public readonly int $y)
