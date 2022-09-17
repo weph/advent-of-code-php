@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Year2015\Day03;
 
+use AdventOfCode\Common\Point;
 use function count;
 
 final class DeliveryTeam
@@ -49,9 +50,9 @@ final class DeliveryTeam
         }
     }
 
-    private function dropPackageAt(string $location): void
+    private function dropPackageAt(Point $location): void
     {
-        $this->deliveredHouses[$location] = (int)($this->deliveredHouses[$location] ?? 0) + 1;
+        $this->deliveredHouses[$location->asString()] = (int)($this->deliveredHouses[$location->asString()] ?? 0) + 1;
     }
 
     private function currentMemeber(): Santa

@@ -3,27 +3,31 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Year2015\Day03;
 
+use AdventOfCode\Common\Point;
 use RuntimeException;
 
 final class Santa
 {
-    private int $x = 0;
+    private Point $location;
 
-    private int $y = 0;
+    public function __construct()
+    {
+        $this->location = new Point(0, 0);
+    }
 
     public function move(string $instruction): void
     {
-        match ($instruction) {
-            '^' => --$this->y,
-            'v' => ++$this->y,
-            '>' => ++$this->x,
-            '<' => --$this->x,
+        $this->location = match ($instruction) {
+            '^' => $this->location->addY(-1),
+            'v' => $this->location->addY(1),
+            '>' => $this->location->addX(1),
+            '<' => $this->location->addX(-1),
             default => throw new RuntimeException('Invalid instruction ' . $instruction)
         };
     }
 
-    public function location(): string
+    public function location(): Point
     {
-        return sprintf('%sx%s', $this->x, $this->y);
+        return $this->location;
     }
 }
