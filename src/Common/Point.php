@@ -33,18 +33,18 @@ final class Point
         return new self($this->x, $this->y + $y);
     }
 
-    public function add(self $otherPoint): self
-    {
-        return new self($this->x + $otherPoint->x, $this->y + $otherPoint->y);
-    }
-
-    public function subtract(self $otherPoint): self
-    {
-        return new self($this->x - $otherPoint->x, $this->y - $otherPoint->y);
-    }
-
     public function asString(): string
     {
         return sprintf('(%d, %d)', $this->x, $this->y);
+    }
+
+    public function withX(int $x): self
+    {
+        return new self($x, $this->y);
+    }
+
+    public function withY(int $y): self
+    {
+        return new self($this->x, $y);
     }
 }

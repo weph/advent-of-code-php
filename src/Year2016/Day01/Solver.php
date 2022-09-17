@@ -5,6 +5,7 @@ namespace AdventOfCode\Year2016\Day01;
 
 use AdventOfCode\Common\CardinalDirection;
 use AdventOfCode\Common\Input;
+use AdventOfCode\Common\Line;
 use AdventOfCode\Common\Point;
 use AdventOfCode\Common\PuzzleSolver;
 use LogicException;
@@ -60,16 +61,10 @@ final class Solver implements PuzzleSolver
                 CardinalDirection::WEST => $position->addX(-$distance),
             };
 
-            $positions = match ($facing) {
-                CardinalDirection::EAST, CardinalDirection::WEST => array_map(
-                    static fn(int $x) => (new Point($x, $position->y))->asString(),
-                    array_slice(range($position->x, $nextPosition->x), 1)
-                ),
-                CardinalDirection::NORTH, CardinalDirection::SOUTH => array_map(
-                    static fn(int $y) => (new Point($position->x, $y))->asString(),
-                    array_slice(range($position->y, $nextPosition->y), 1)
-                ),
-            };
+            $positions = array_map(
+                static fn(Point $p) => $p->asString(),
+                array_slice((new Line($position, $nextPosition))->points(), 1)
+            );
 
             $intersections = array_values(array_intersect($positions, $locations));
             if ($intersections !== []) {

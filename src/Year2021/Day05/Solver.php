@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace AdventOfCode\Year2021\Day05;
 
 use AdventOfCode\Common\Input;
+use AdventOfCode\Common\Line;
 use AdventOfCode\Common\Point;
 use AdventOfCode\Common\PuzzleSolver;
 use function count;
