@@ -71,6 +71,24 @@ final class Input
     }
 
     /**
+     * @return Collection<string>
+     */
+    public function columns(): Collection
+    {
+        $lines = explode("\n", trim($this->input));
+        $lineLength = strlen($lines[0]);
+        $columns = array_fill(0, $lineLength, '');
+
+        foreach ($lines as $line) {
+            foreach (str_split($line) as $position => $char) {
+                $columns[$position] .= $char;
+            }
+        }
+
+        return new Collection($columns);
+    }
+
+    /**
      * @return Collection<array<string>>
      */
     public function matchLines(string $regex): Collection

@@ -99,4 +99,10 @@ final class Collection
 
         return new self($sorted);
     }
+
+    public function join(string $separator = ''): string
+    {
+        /** @psalm-suppress MixedArgumentTypeCoercion */
+        return implode($separator, array_map('\strval', $this->items));
+    }
 }
