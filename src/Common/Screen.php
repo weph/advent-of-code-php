@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace AdventOfCode\Year2016\Day08;
+namespace AdventOfCode\Common;
 
 final class Screen
 {
@@ -15,10 +15,10 @@ final class Screen
         $this->pixels = array_fill(0, $this->rows, array_fill(0, $this->cols, false));
     }
 
-    public function rect(int $width, int $height): void
+    public function turnOn(Point $start, Point $end): void
     {
-        for ($row = 0; $row < $height; $row++) {
-            for ($col = 0; $col < $width; $col++) {
+        for ($row = $start->y; $row <= $end->y; $row++) {
+            for ($col = $start->x; $col <= $end->x; $col++) {
                 $this->pixels[$row][$col] = true;
             }
         }
