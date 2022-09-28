@@ -43,4 +43,9 @@ final class CharacterCount
     {
         return (string)array_search(min($this->counts), $this->counts);
     }
+
+    public function hasCharacterWithCount(int $count): bool
+    {
+        return in_array($count, $this->counts);
+    }
 }
