@@ -15,6 +15,7 @@ final class Solver implements PuzzleSolver
 {
     public function partOne(Input $input): int
     {
+        /** @var Grid<bool> $screen */
         $screen = new Grid(999, 999, false);
 
         foreach ($input->lines()->asArray() as $line) {
@@ -38,6 +39,7 @@ final class Solver implements PuzzleSolver
 
     public function partTwo(Input $input): int
     {
+        /** @var Grid<int> $screen */
         $screen = new Grid(999, 999, 0);
 
         foreach ($input->lines()->asArray() as $line) {
@@ -56,6 +58,6 @@ final class Solver implements PuzzleSolver
             );
         }
 
-        return (int)array_sum($screen->values());
+        return array_sum($screen->values());
     }
 }

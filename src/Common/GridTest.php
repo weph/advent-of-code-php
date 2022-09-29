@@ -32,6 +32,7 @@ final class GridTest extends TestCase
      */
     public function values_can_be_processed_by_a_callback_function(): void
     {
+        /** @var Grid<int> $grid */
         $grid = new Grid(4, 4, 0);
         $grid->set(new Point(0, 0), 1);
         $grid->set(new Point(1, 1), 2);
@@ -47,5 +48,22 @@ final class GridTest extends TestCase
             "0004\n",
             $grid->asString()
         );
+    }
+
+    /**
+     * @test
+     */
+    public function individual_range_of_values_can_be_accessed(): void
+    {
+        $grid = new Grid(4, 4, 0);
+        for ($y = 0; $y < 4; $y++) {
+            for ($x = 0; $x < 4; $x++) {
+                $grid->set(new Point($x, $y), $x + $y * 4 + 1);
+            }
+        }
+
+        $result = $grid->valuesAt(new Point(1, 1), new Point(2, 2));
+
+        self::assertSame([6, 7, 10, 11], $result);
     }
 }
