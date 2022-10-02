@@ -8,7 +8,7 @@ final class Permutations
     /**
      * @template T
      * @param list<T> $values
-     * @return list<list<T>>
+     * @return non-empty-list<list<T>>
      */
     public static function of(array $values): array
     {
@@ -18,7 +18,7 @@ final class Permutations
     /**
      * @template T
      * @param array<T> $values
-     * @return list<list<T>>
+     * @return non-empty-list<list<T>>
      *
      * @see https://en.wikipedia.org/wiki/Heap%27s_algorithm
      */
