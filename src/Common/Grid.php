@@ -16,7 +16,7 @@ final class Grid
     /**
      * @param T $initialValue
      */
-    public function __construct(private readonly int $cols, private readonly int $rows, mixed $initialValue)
+    public function __construct(public readonly int $cols, public readonly int $rows, mixed $initialValue)
     {
         $this->values = array_fill(0, ($this->rows + 1) * $this->cols, $initialValue);
     }
@@ -42,7 +42,15 @@ final class Grid
         $values = [];
 
         for ($row = $start->y; $row <= $end->y; $row++) {
+            if ($row < 0 || $row > $this->rows) {
+                continue;
+            }
+
             for ($col = $start->x; $col <= $end->x; $col++) {
+                if ($col < 0 || $col >= $this->cols) {
+                    continue;
+                }
+
                 $values[] = $this->valueAt(new Point($col, $row));
             }
         }
@@ -58,6 +66,15 @@ final class Grid
         for ($row = $start->y; $row <= $end->y; $row++) {
             for ($col = $start->x; $col <= $end->x; $col++) {
                 $this->set(new Point($col, $row), $func(new Point($col, $row), $this->valueAt(new Point($col, $row))));
+            }
+        }
+    }
+
+    public function each(callable $func): void
+    {
+        for ($row = 0; $row < $this->cols; $row++) {
+            for ($col = 0; $col < $this->rows; $col++) {
+                $func(new Point($col, $row), $this->valueAt(new Point($col, $row)));
             }
         }
     }

@@ -33,6 +33,11 @@ final class Point
         return new self($this->x, $this->y + $y);
     }
 
+    public function addXY(int $x, int $y): self
+    {
+        return new self($this->x + $x, $this->y + $y);
+    }
+
     public function asString(): string
     {
         return sprintf('(%d, %d)', $this->x, $this->y);
