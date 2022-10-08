@@ -3,44 +3,34 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Year2020\Day01;
 
+use AdventOfCode\Common\Combinations;
 use AdventOfCode\Common\Input;
 use AdventOfCode\Common\PuzzleSolver;
 use LogicException;
-use function count;
 
 final class Solver implements PuzzleSolver
 {
     public function partOne(Input $input): int
     {
-        $values = $input->integers();
-        $numValues = count($values);
-
-        for ($i = 0; $i < $numValues; $i++) {
-            for ($j = $i + 1; $j < $numValues; $j++) {
-                if ($values[$i] + $values[$j] === 2020) {
-                    return $values[$i] * $values[$j];
-                }
-            }
-        }
-
-        throw new LogicException('There are no two numbers that sum up to 2020');
+        return $this->productOfCombinationOfNThatSumsUpTo2020($input->integers(), 2);
     }
 
     public function partTwo(Input $input): int
     {
-        $values = $input->integers();
-        $numValues = count($values);
+        return $this->productOfCombinationOfNThatSumsUpTo2020($input->integers(), 3);
+    }
 
-        for ($i = 0; $i < $numValues; $i++) {
-            for ($j = $i + 1; $j < $numValues; $j++) {
-                for ($k = $j + 1; $k < $numValues; $k++) {
-                    if ($values[$i] + $values[$j] + $values[$k] === 2020) {
-                        return $values[$i] * $values[$j] * $values[$k];
-                    }
-                }
+    /**
+     * @param list<int> $values
+     */
+    private function productOfCombinationOfNThatSumsUpTo2020(array $values, int $n): int
+    {
+        foreach (Combinations::of($values, $n) as $combination) {
+            if (array_sum($combination) === 2020) {
+                return array_product($combination);
             }
         }
 
-        throw new LogicException('There are no three numbers that sum up to 2020');
+        throw new LogicException('There is no combination that sums up to 2020');
     }
 }
