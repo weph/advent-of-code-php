@@ -19,7 +19,7 @@ final class Solver implements PuzzleSolver
         $grid = new Grid(1000, 1000, []);
 
         foreach ($instructions as $instruction) {
-            $grid->process($instruction[1], $instruction[2], static fn(array $v) => [...$v, $instruction[0]]);
+            $grid->process($instruction[1], $instruction[2], static fn(Point $_, array $v) => [...$v, $instruction[0]]);
         }
 
         return count(array_filter($grid->values(), static fn(array $v) => count($v) > 1));
@@ -33,7 +33,7 @@ final class Solver implements PuzzleSolver
         $grid = new Grid(1000, 1000, []);
 
         foreach ($instructions as $instruction) {
-            $grid->process($instruction[1], $instruction[2], static fn(array $v) => [...$v, $instruction[0]]);
+            $grid->process($instruction[1], $instruction[2], static fn(Point $_, array $v) => [...$v, $instruction[0]]);
         }
 
         foreach ($instructions as $instruction) {

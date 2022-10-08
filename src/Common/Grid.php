@@ -51,13 +51,13 @@ final class Grid
     }
 
     /**
-     * @param callable(T):T $func
+     * @param callable(Point, T):T $func
      */
     public function process(Point $start, Point $end, callable $func): void
     {
         for ($row = $start->y; $row <= $end->y; $row++) {
             for ($col = $start->x; $col <= $end->x; $col++) {
-                $this->set(new Point($col, $row), $func($this->valueAt(new Point($col, $row))));
+                $this->set(new Point($col, $row), $func(new Point($col, $row), $this->valueAt(new Point($col, $row))));
             }
         }
     }

@@ -29,7 +29,7 @@ final class Solver implements PuzzleSolver
                 match ($matches[1]) {
                     'turn on' => static fn() => true,
                     'turn off' => static fn() => false,
-                    'toggle' => static fn(bool $v) => !$v,
+                    'toggle' => static fn(Point $_, bool $v) => !$v,
                 }
             );
         }
@@ -51,9 +51,9 @@ final class Solver implements PuzzleSolver
                 new Point((int)$matches[2], (int)$matches[3]),
                 new Point((int)$matches[4], (int)$matches[5]),
                 match ($matches[1]) {
-                    'turn on' => static fn(int $v) => $v + 1,
-                    'turn off' => static fn(int $v) => $v > 0 ? $v - 1 : 0,
-                    'toggle' => static fn(int $v) => $v + 2,
+                    'turn on' => static fn(Point $_, int $v) => $v + 1,
+                    'turn off' => static fn(Point $_, int $v) => $v > 0 ? $v - 1 : 0,
+                    'toggle' => static fn(Point $_, int $v) => $v + 2,
                 }
             );
         }

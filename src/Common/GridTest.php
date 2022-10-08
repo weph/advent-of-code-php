@@ -39,7 +39,7 @@ final class GridTest extends TestCase
         $grid->set(new Point(2, 2), 3);
         $grid->set(new Point(3, 3), 4);
 
-        $grid->process(new Point(1, 1), new Point(2, 2), static fn(int $value) => $value + 1);
+        $grid->process(new Point(1, 1), new Point(2, 2), static fn(Point $_, int $value) => $value + 1);
 
         self::assertSame(
             "1000\n" .
