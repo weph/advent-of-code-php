@@ -8,9 +8,10 @@ use Generator;
 final class Combinations
 {
     /**
-     * @param list<scalar> $values
+     * @template T
+     * @param list<T> $values
      * @param int $n
-     * @return Generator<list<scalar>>
+     * @return Generator<list<T>>
      */
     public static function of(array $values, int $n): Generator
     {
@@ -21,6 +22,20 @@ final class Combinations
                 foreach (self::of(array_slice($values, $i + 1), $n - 1) as $next) {
                     yield [$values[$i], ...$next];
                 }
+            }
+        }
+    }
+
+    /**
+     * @template T
+     * @param list<T> $values
+     * @return Generator<list<T>>
+     */
+    public static function all(array $values): Generator
+    {
+        foreach (range(1, count($values)) as $n) {
+            foreach (self::of($values, $n) as $combination) {
+                yield $combination;
             }
         }
     }

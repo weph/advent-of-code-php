@@ -51,4 +51,23 @@ final class CombinationsTest extends TestCase
             ]
         ];
     }
+
+    /**
+     * @test
+     */
+    public function all(): void
+    {
+        self::assertEquals(
+            [
+                [1],
+                [2],
+                [3],
+                [1, 2],
+                [1, 3],
+                [2, 3],
+                [1, 2, 3]
+            ],
+            iterator_to_array(Combinations::all([1, 2, 3]))
+        );
+    }
 }
