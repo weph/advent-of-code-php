@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Common;
 
-use Exception;
+use RuntimeException;
 use function array_slice;
 use function count;
 
@@ -36,12 +36,11 @@ final class Collection
 
     /**
      * @return T
-     * @throws Exception
      */
     public function first(): mixed
     {
         if ($this->items === []) {
-            throw new Exception('Collection is empty');
+            throw new RuntimeException('Collection is empty');
         }
 
         return $this->items[0];
@@ -49,15 +48,47 @@ final class Collection
 
     /**
      * @return T
-     * @throws Exception
      */
     public function last(): mixed
     {
         if ($this->items === []) {
-            throw new Exception('Collection is empty');
+            throw new RuntimeException('Collection is empty');
         }
 
         return $this->items[array_key_last($this->items)];
+    }
+
+    /**
+     * @return T
+     */
+    public function min(): mixed
+    {
+        if ($this->items === []) {
+            throw new RuntimeException('Collection is empty');
+        }
+
+        return min($this->items);
+    }
+
+    /**
+     * @return T
+     */
+    public function max(): mixed
+    {
+        if ($this->items === []) {
+            throw new RuntimeException('Collection is empty');
+        }
+
+        return max($this->items);
+    }
+
+    /**
+     * @param Collection<T> $other
+     * @return Collection<T>
+     */
+    public function diff(Collection $other): self
+    {
+        return new Collection(array_values(array_diff($this->asArray(), $other->asArray())));
     }
 
     /**
