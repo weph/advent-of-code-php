@@ -34,6 +34,11 @@ final class Collection
         return count($this->items);
     }
 
+    public function sum(): int|float
+    {
+        return array_sum($this->items);
+    }
+
     /**
      * @return T
      */
