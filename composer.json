@@ -22,6 +22,9 @@
     "autoload": {
         "psr-4": {
             "AdventOfCode\\": "src"
-        }
+        },
+        "files": [
+            "src/Common/functions.php"
+        ]
     }
 }
