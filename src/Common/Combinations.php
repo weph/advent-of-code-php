@@ -9,18 +9,20 @@ final class Combinations
 {
     /**
      * @template T
-     * @param list<T> $values
+     * @param array<T> $values
      * @param int $n
      * @return Generator<list<T>>
      */
     public static function of(array $values, int $n): Generator
     {
-        foreach (range(0, count($values) - $n) as $i) {
+        $valuesAsList = array_values($values);
+
+        foreach (range(0, count($valuesAsList) - $n) as $i) {
             if ($n === 1) {
-                yield [$values[$i]];
+                yield [$valuesAsList[$i]];
             } else {
-                foreach (self::of(array_slice($values, $i + 1), $n - 1) as $next) {
-                    yield [$values[$i], ...$next];
+                foreach (self::of(array_slice($valuesAsList, $i + 1), $n - 1) as $next) {
+                    yield [$valuesAsList[$i], ...$next];
                 }
             }
         }
