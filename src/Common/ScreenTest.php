@@ -3,17 +3,16 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Common;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \AdventOfCode\Common\Screen
- */
+#[CoversClass(\AdventOfCode\Common\Screen::class)]
 final class ScreenTest extends TestCase
 {
-    /**
-     * @test
-     * @dataProvider turnOnExamples
-     */
+    #[DataProvider('turnOnExamples')]
+    #[Test]
     public function it_should_turn_on_leds_within_the_given_points(Point $start, Point $end, string $expected): void
     {
         $screen = new Screen(4, 4);
@@ -26,7 +25,7 @@ final class ScreenTest extends TestCase
     /**
      * @return iterable<string, array{0: Point, 1: Point, 2: string}>
      */
-    public function turnOnExamples(): iterable
+    public static function turnOnExamples(): iterable
     {
         yield 'line (horizontal)' => [
             new Point(0, 0), new Point(4, 0),

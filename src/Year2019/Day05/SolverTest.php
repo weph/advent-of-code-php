@@ -3,21 +3,21 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Year2019\Day05;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \AdventOfCode\Year2019\Day05\Solver
- */
+#[CoversClass(\AdventOfCode\Year2019\Day05\Solver::class)]
 final class SolverTest extends TestCase
 {
     private Solver $subject;
 
     /**
      * @param list<int> $memory
-     *
-     * @test
-     * @dataProvider examples
      */
+    #[DataProvider('examples')]
+    #[Test]
     public function compute(array $memory, int $input, int $expected): void
     {
         self::assertSame([$expected], (new IntcodeComputer($memory))->run($input));
@@ -26,7 +26,7 @@ final class SolverTest extends TestCase
     /**
      * @return iterable<string, array{0: list<int>, 1: int, 2: int}>
      */
-    public function examples(): iterable
+    public static function examples(): iterable
     {
         // Using position mode, consider whether the input is equal to 8; output 1 (if it is) or 0 (if it is not)
         $example1 = [3, 9, 8, 9, 10, 9, 4, 9, 99, -1, 8];

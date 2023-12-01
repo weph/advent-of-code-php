@@ -3,16 +3,14 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Common;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \AdventOfCode\Common\Grid
- */
+#[CoversClass(\AdventOfCode\Common\Grid::class)]
 final class GridTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function individual_values_can_be_set(): void
     {
         $grid = new Grid(3, 3, ' ');
@@ -27,9 +25,7 @@ final class GridTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function values_can_be_processed_by_a_callback_function(): void
     {
         /** @var Grid<int> $grid */
@@ -50,9 +46,7 @@ final class GridTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function individual_range_of_values_can_be_accessed(): void
     {
         $grid = new Grid(4, 4, 0);

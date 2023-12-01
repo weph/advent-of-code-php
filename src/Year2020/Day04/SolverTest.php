@@ -3,20 +3,19 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Year2020\Day04;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use AdventOfCode\Common\Input;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \AdventOfCode\Year2020\Day04\Solver
- */
+#[CoversClass(\AdventOfCode\Year2020\Day04\Solver::class)]
 final class SolverTest extends TestCase
 {
     private Solver $subject;
 
-    /**
-     * @test
-     * @dataProvider requiredFieldsExamples
-     */
+    #[DataProvider('requiredFieldsExamples')]
+    #[Test]
     public function hasRequiredFields(string $fields, bool $expected): void
     {
         self::assertSame($expected, PasswordValidator::hasRequiredFields(fields($fields)));
@@ -25,7 +24,7 @@ final class SolverTest extends TestCase
     /**
      * @return iterable<string, array{0: string, 1: bool}>
      */
-    public function requiredFieldsExamples(): iterable
+    public static function requiredFieldsExamples(): iterable
     {
         yield 'all fields present' => [
             'ecl:gry pid:860033327 eyr:2020 hcl:#fffffd byr:1937 iyr:2017 cid:147 hgt:183cm',
@@ -48,10 +47,8 @@ final class SolverTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     * @dataProvider validationExamples
-     */
+    #[DataProvider('validationExamples')]
+    #[Test]
     public function isValid(string $fields, bool $expected): void
     {
         self::assertSame($expected, PasswordValidator::isValid(fields($fields)));
@@ -60,7 +57,7 @@ final class SolverTest extends TestCase
     /**
      * @return iterable<array-key, array{0: string, 1: bool}>
      */
-    public function validationExamples(): iterable
+    public static function validationExamples(): iterable
     {
         yield [
             'eyr:1972 cid:100 hcl:#18171d ecl:amb hgt:170 pid:186cm iyr:2018 byr:1926',
@@ -103,9 +100,7 @@ final class SolverTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function partOne(): void
     {
         self::assertSame(2, $this->subject->partOne(Input::fromString("ecl:gry pid:860033327 eyr:2020 hcl:#fffffd
@@ -123,9 +118,7 @@ hcl:#cfa07d eyr:2025 pid:166559648
 iyr:2011 ecl:brn hgt:59in")));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function partTwo(): void
     {
         self::assertSame(4, $this->subject->partTwo(Input::fromString("eyr:1972 cid:100

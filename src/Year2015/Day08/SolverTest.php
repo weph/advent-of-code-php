@@ -3,20 +3,19 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Year2015\Day08;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use AdventOfCode\Common\Input;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \AdventOfCode\Year2015\Day08\Solver
- */
+#[CoversClass(\AdventOfCode\Year2015\Day08\Solver::class)]
 final class SolverTest extends TestCase
 {
     private Solver $subject;
 
-    /**
-     * @test
-     * @dataProvider numberOfCharactersExamples
-     */
+    #[DataProvider('numberOfCharactersExamples')]
+    #[Test]
     public function numberOfCharacters(string $input, int $expected): void
     {
         self::assertSame($expected, numberOfCharacters($input));
@@ -25,7 +24,7 @@ final class SolverTest extends TestCase
     /**
      * @return iterable<array-key, array{0: string, 1: int}>
      */
-    public function numberOfCharactersExamples(): iterable
+    public static function numberOfCharactersExamples(): iterable
     {
         yield ['""', 0];
         yield ['"abc"', 3];
@@ -33,9 +32,7 @@ final class SolverTest extends TestCase
         yield ['"\x27"', 1];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function partOne(): void
     {
         self::assertSame(
@@ -51,9 +48,7 @@ final class SolverTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function partTwo(): void
     {
         self::assertSame(

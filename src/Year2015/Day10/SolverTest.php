@@ -3,20 +3,19 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Year2015\Day10;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use AdventOfCode\Common\Input;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \AdventOfCode\Year2015\Day10\Solver
- */
+#[CoversClass(\AdventOfCode\Year2015\Day10\Solver::class)]
 final class SolverTest extends TestCase
 {
     private Solver $subject;
 
-    /**
-     * @test
-     * @dataProvider lookAndSayExamples
-     */
+    #[DataProvider('lookAndSayExamples')]
+    #[Test]
     public function lookAndSay(string $input, string $expected): void
     {
         self::assertSame($expected, lookAndSay($input));
@@ -25,7 +24,7 @@ final class SolverTest extends TestCase
     /**
      * @return iterable<array-key, array{0: string, 1: string}>
      */
-    public function lookAndSayExamples(): iterable
+    public static function lookAndSayExamples(): iterable
     {
         yield ['1', '11'];
         yield ['11', '21'];
@@ -34,17 +33,13 @@ final class SolverTest extends TestCase
         yield ['111221', '312211'];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function partOne(): void
     {
         self::assertSame(139984, $this->subject->partOne(Input::fromString('21')));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function partTwo(): void
     {
         self::assertSame(1_982_710, $this->subject->partTwo(Input::fromString('21')));

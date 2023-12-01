@@ -3,22 +3,22 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Year2019\Day03;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use AdventOfCode\Common\Input;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \AdventOfCode\Year2019\Day03\Solver
- */
+#[CoversClass(\AdventOfCode\Year2019\Day03\Solver::class)]
 final class SolverTest extends TestCase
 {
     private Solver $subject;
 
     /**
      * @param list<string> $input
-     *
-     * @test
-     * @dataProvider partOneExamples
      */
+    #[DataProvider('partOneExamples')]
+    #[Test]
     public function partOne(array $input, int $expected): void
     {
         self::assertEquals($expected, $this->subject->partOne(Input::fromArray($input)));
@@ -27,7 +27,7 @@ final class SolverTest extends TestCase
     /**
      * @return iterable<array-key, array{0: list<string>, 1: int}>
      */
-    public function partOneExamples(): iterable
+    public static function partOneExamples(): iterable
     {
         yield [
             [
@@ -56,10 +56,9 @@ final class SolverTest extends TestCase
 
     /**
      * @param list<string> $input
-     *
-     * @test
-     * @dataProvider partTwoExamples
      */
+    #[DataProvider('partTwoExamples')]
+    #[Test]
     public function partTwo(array $input, int $expected): void
     {
         self::assertEquals($expected, $this->subject->partTwo(Input::fromArray($input)));
@@ -68,7 +67,7 @@ final class SolverTest extends TestCase
     /**
      * @return iterable<array-key, array{0: list<string>, 1: int}>
      */
-    public function partTwoExamples(): iterable
+    public static function partTwoExamples(): iterable
     {
         yield [
             [

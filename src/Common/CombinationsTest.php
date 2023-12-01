@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Common;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \AdventOfCode\Common\Combinations
- */
+#[CoversClass(\AdventOfCode\Common\Combinations::class)]
 final class CombinationsTest extends TestCase
 {
     /**
      * @param list<scalar> $values
      * @param list<list<scalar>> $expected
-     *
-     * @test
-     * @dataProvider examples
      */
+    #[DataProvider('examples')]
+    #[Test]
     public function combinations(array $values, int $n, array $expected): void
     {
         self::assertEquals($expected, iterator_to_array(Combinations::of($values, $n)));
@@ -25,7 +25,7 @@ final class CombinationsTest extends TestCase
     /**
      * @return iterable<array-key, array{0: list<scalar>, 1: int, 2: list<list<scalar>>}>
      */
-    public function examples(): iterable
+    public static function examples(): iterable
     {
         yield [
             [1, 2, 3, 4],
@@ -52,9 +52,7 @@ final class CombinationsTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function all(): void
     {
         self::assertEquals(

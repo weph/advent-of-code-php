@@ -3,19 +3,17 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Year2018\Day02;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use AdventOfCode\Common\Input;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \AdventOfCode\Year2018\Day02\Solver
- */
+#[CoversClass(\AdventOfCode\Year2018\Day02\Solver::class)]
 final class SolverTest extends TestCase
 {
     private Solver $subject;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function partOne(): void
     {
         self::assertSame(
@@ -36,9 +34,7 @@ final class SolverTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function partTwo(): void
     {
         self::assertSame(

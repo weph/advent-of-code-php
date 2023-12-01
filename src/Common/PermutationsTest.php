@@ -3,19 +3,19 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Common;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \AdventOfCode\Common\Permutations
- */
+#[CoversClass(\AdventOfCode\Common\Permutations::class)]
 final class PermutationsTest extends TestCase
 {
     /**
      * @param list<string> $expected
-     *
-     * @test
-     * @dataProvider examples
      */
+    #[DataProvider('examples')]
+    #[Test]
     public function permutations(string $input, array $expected): void
     {
         $values = explode(',', $input);
@@ -28,7 +28,7 @@ final class PermutationsTest extends TestCase
     /**
      * @return iterable<array-key, array{0: string, 1: list<string>}>
      */
-    public function examples(): iterable
+    public static function examples(): iterable
     {
         yield [
             'a',

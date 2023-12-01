@@ -3,20 +3,19 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Year2015\Day11;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use AdventOfCode\Common\Input;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \AdventOfCode\Year2015\Day11\Solver
- */
+#[CoversClass(\AdventOfCode\Year2015\Day11\Solver::class)]
 final class SolverTest extends TestCase
 {
     private Solver $subject;
 
-    /**
-     * @test
-     * @dataProvider passwordExamples
-     */
+    #[DataProvider('passwordExamples')]
+    #[Test]
     public function validPassword(string $input, bool $expected): void
     {
         self::assertSame($expected, validPassword($input));
@@ -25,7 +24,7 @@ final class SolverTest extends TestCase
     /**
      * @return iterable<array-key, array{0: string, 1: bool}>
      */
-    public function passwordExamples(): iterable
+    public static function passwordExamples(): iterable
     {
         yield ['hijklmmn', false];
         yield ['abbceffg', false];
@@ -34,10 +33,8 @@ final class SolverTest extends TestCase
         yield ['ghjaabcc', true];
     }
 
-    /**
-     * @test
-     * @dataProvider partOneExamples
-     */
+    #[DataProvider('partOneExamples')]
+    #[Test]
     public function partOne(string $input, string $expected): void
     {
         self::assertSame($expected, $this->subject->partOne(Input::fromString($input)));
@@ -46,7 +43,7 @@ final class SolverTest extends TestCase
     /**
      * @return iterable<array-key, array{0: string, 1: string}>
      */
-    public function partOneExamples(): iterable
+    public static function partOneExamples(): iterable
     {
         yield ['abcdefgh', 'abcdffaa'];
         yield ['ghijklmn', 'ghjaabcc'];

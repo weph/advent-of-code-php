@@ -3,21 +3,20 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Year2019\Day01;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use AdventOfCode\Common\Input;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \AdventOfCode\Year2019\Day01\Solver
- */
+#[CoversClass(\AdventOfCode\Year2019\Day01\Solver::class)]
 final class SolverTest extends TestCase
 {
     private Solver $subject;
 
-    /**
-     * @test
-     *
-     * @dataProvider fuelRequiredForMassExamples
-     */
+    
+    #[DataProvider('fuelRequiredForMassExamples')]
+    #[Test]
     public function calculate_fuel_for_mass(int $mass, int $expectedFuel): void
     {
         self::assertSame($expectedFuel, fuelRequiredForMass($mass));
@@ -26,7 +25,7 @@ final class SolverTest extends TestCase
     /**
      * @return iterable<array-key, array{0: int, 1: int}>
      */
-    public function fuelRequiredForMassExamples(): iterable
+    public static function fuelRequiredForMassExamples(): iterable
     {
         yield [12, 2];
         yield [14, 2];
@@ -34,11 +33,9 @@ final class SolverTest extends TestCase
         yield [100756, 33583];
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider fuelRequiredForMassAndFuelExamples
-     */
+    
+    #[DataProvider('fuelRequiredForMassAndFuelExamples')]
+    #[Test]
     public function calculate_fuel_for_mass_and_fuel(int $mass, int $expectedFuel): void
     {
         self::assertSame($expectedFuel, fuelRequiredForMassAndFuel($mass));
@@ -47,24 +44,20 @@ final class SolverTest extends TestCase
     /**
      * @return iterable<array-key, array{0: int, 1: int}>
      */
-    public function fuelRequiredForMassAndFuelExamples(): iterable
+    public static function fuelRequiredForMassAndFuelExamples(): iterable
     {
         yield [12, 2];
         yield [1969, 966];
         yield [100756, 50346];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function partOne(): void
     {
         self::assertSame(656, $this->subject->partOne(Input::fromArray([12, 1969])));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function partTwo(): void
     {
         self::assertSame(968, $this->subject->partTwo(Input::fromArray([12, 1969])));

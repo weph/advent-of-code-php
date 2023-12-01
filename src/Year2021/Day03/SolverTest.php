@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace AdventOfCode\Year2021\Day03;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use AdventOfCode\Common\Input;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \AdventOfCode\Year2021\Day03\Solver
- */
+#[CoversClass(\AdventOfCode\Year2021\Day03\Solver::class)]
 final class SolverTest extends TestCase
 {
     private const EXAMPLE_INPUT = [
@@ -28,17 +28,13 @@ final class SolverTest extends TestCase
 
     private Solver $subject;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function partOne(): void
     {
         self::assertSame(198, $this->subject->partOne(Input::fromArray(self::EXAMPLE_INPUT)));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function partTwo(): void
     {
         self::assertSame(230, $this->subject->partTwo(Input::fromArray(self::EXAMPLE_INPUT)));
