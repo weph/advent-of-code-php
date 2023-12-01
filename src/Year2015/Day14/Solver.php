@@ -10,13 +10,13 @@ use Webmozart\Assert\Assert;
 /**
  * @psalm-immutable
  */
-final class Reindeer
+final readonly class Reindeer
 {
     public function __construct(
-        public  readonly string $name,
-        private readonly int $speed,
-        private readonly int $time,
-        private readonly int $rest
+        public string $name,
+        private int $speed,
+        private int $time,
+        private int $rest
     )
     {
     }
@@ -68,12 +68,12 @@ final class MaxPointsScoringSystem implements ScoringSystem
     }
 }
 
-final class ReindeerOlympics
+final readonly class ReindeerOlympics
 {
     /**
      * @param non-empty-list<Reindeer> $reindeers
      */
-    public function __construct(private readonly array $reindeers)
+    public function __construct(private array $reindeers)
     {
     }
 
@@ -97,9 +97,9 @@ final class ReindeerOlympics
     }
 }
 
-final class Solver implements PuzzleSolver
+final readonly class Solver implements PuzzleSolver
 {
-    public function __construct(private readonly int $raceDurationInSeconds = 2503)
+    public function __construct(private int $raceDurationInSeconds = 2503)
     {
     }
 

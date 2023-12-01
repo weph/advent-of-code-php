@@ -57,6 +57,7 @@ final class SolverTest extends TestCase
         yield ['()())', 5];
     }
 
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

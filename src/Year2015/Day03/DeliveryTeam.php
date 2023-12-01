@@ -8,11 +8,6 @@ use function count;
 
 final class DeliveryTeam
 {
-    /**
-     * @var list<Santa>
-     */
-    private array $team;
-
     private int $currentMember = 0;
 
     private array $deliveredHouses = [];
@@ -20,9 +15,8 @@ final class DeliveryTeam
     /**
      * @param list<Santa> $team
      */
-    private function __construct(array $team)
+    private function __construct(private array $team)
     {
-        $this->team = $team;
     }
 
     public static function withTeamSize(int $teamSize): self

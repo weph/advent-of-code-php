@@ -62,6 +62,7 @@ final class SolverTest extends TestCase
         yield [['qjhvhtzxzqqjkmpb', 'xxyxx', 'uurcxstgmygtbstg', 'ieodomkazucvgmuy'], 2];
     }
 
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

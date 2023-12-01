@@ -50,7 +50,7 @@ final class Solver implements PuzzleSolver
 
         for ($noun = 0; $noun <= 99; $noun++) {
             for ($verb = 0; $verb <= 99; $verb++) {
-                if (compute($memory, $noun, $verb) === 19690720) {
+                if (compute($memory, $noun, $verb) === 19_690_720) {
                     return 100 * $noun + $verb;
                 }
             }

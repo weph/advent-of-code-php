@@ -18,9 +18,9 @@ enum Op: string
 /**
  * @psalm-immutable
  */
-final class Instruction
+final readonly class Instruction
 {
-    public function __construct(public readonly Op $op, public readonly int $arg)
+    public function __construct(public Op $op, public int $arg)
     {
     }
 
@@ -82,7 +82,7 @@ final class Solver implements PuzzleSolver
 
         try {
             $emulation->run($this->instructionsFromInput($input));
-        } catch (Exception $e) {
+        } catch (Exception) {
         }
 
         return $emulation->accumulator;
@@ -101,7 +101,7 @@ final class Solver implements PuzzleSolver
                 $emulation->run($copy);
 
                 return $emulation->accumulator;
-            } catch (Exception $e) {
+            } catch (Exception) {
             }
         }
 

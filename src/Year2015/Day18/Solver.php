@@ -8,9 +8,9 @@ use AdventOfCode\Common\Input;
 use AdventOfCode\Common\Point;
 use AdventOfCode\Common\PuzzleSolver;
 
-final class Solver implements PuzzleSolver
+final readonly class Solver implements PuzzleSolver
 {
-    public function __construct(private readonly int $generations = 100)
+    public function __construct(private int $generations = 100)
     {
     }
 

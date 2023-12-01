@@ -67,6 +67,7 @@ final class SolverTest extends TestCase
         ];
     }
 
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

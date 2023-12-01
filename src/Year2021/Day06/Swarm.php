@@ -6,12 +6,12 @@ namespace AdventOfCode\Year2021\Day06;
 /**
  * @psalm-immutable
  */
-final class Swarm
+final readonly class Swarm
 {
     /**
      * @param array<int, int> $population
      */
-    public function __construct(private readonly array $population)
+    public function __construct(private array $population)
     {
     }
 

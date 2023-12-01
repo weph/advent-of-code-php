@@ -9,9 +9,9 @@ use function array_slice;
 /**
  * @psalm-immutable
  */
-final class Input
+final readonly class Input
 {
-    public function __construct(private readonly string $input)
+    public function __construct(private string $input)
     {
     }
 

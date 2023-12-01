@@ -29,9 +29,10 @@ final class SolverTest extends TestCase
     public function partOneExamples(): iterable
     {
         yield ['abcdef', 609043];
-        yield ['pqrstuv', 1048970];
+        yield ['pqrstuv', 1_048_970];
     }
 
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

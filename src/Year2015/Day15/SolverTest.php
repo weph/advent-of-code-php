@@ -19,7 +19,7 @@ final class SolverTest extends TestCase
     public function partOne(): void
     {
         self::assertSame(
-            62842880,
+            62_842_880,
             $this->subject->partOne(
                 Input::fromArray(
                     [
@@ -37,7 +37,7 @@ final class SolverTest extends TestCase
     public function partTwo(): void
     {
         self::assertSame(
-            57600000,
+            57_600_000,
             $this->subject->partTwo(
                 Input::fromArray(
                     [
@@ -49,6 +49,7 @@ final class SolverTest extends TestCase
         );
     }
 
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

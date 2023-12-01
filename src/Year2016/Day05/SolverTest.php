@@ -29,6 +29,7 @@ final class SolverTest extends TestCase
         self::assertSame('05ace8e3', $this->subject->partTwo(Input::fromString('abc')));
     }
 
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

@@ -27,6 +27,6 @@ final class Solver implements PuzzleSolver
 
     public function partTwo(Input $input): int
     {
-        return countNumbers(json_decode($input->raw(), false));
+        return countNumbers(json_decode($input->raw(), false, 512, JSON_THROW_ON_ERROR));
     }
 }

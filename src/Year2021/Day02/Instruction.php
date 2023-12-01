@@ -8,13 +8,13 @@ use RuntimeException;
 /**
  * @psalm-immutable
  */
-final class Instruction
+final readonly class Instruction
 {
     private const PATTERN = '/^(.+) (\d+)$/';
 
     public function __construct(
-        public readonly Direction $direction,
-        public readonly int $length
+        public Direction $direction,
+        public int $length
     )
     {
     }

@@ -53,6 +53,7 @@ final class SolverTest extends TestCase
         yield ['^v^v^v^v^v', 11];
     }
 
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

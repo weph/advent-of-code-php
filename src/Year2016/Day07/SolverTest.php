@@ -43,6 +43,7 @@ final class SolverTest extends TestCase
         self::assertSame(3, $this->subject->partTwo($input));
     }
 
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

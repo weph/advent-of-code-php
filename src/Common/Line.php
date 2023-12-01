@@ -6,9 +6,9 @@ namespace AdventOfCode\Common;
 /**
  * @psalm-immutable
  */
-final class Line
+final readonly class Line
 {
-    public function __construct(private readonly Point $start, private readonly Point $end)
+    public function __construct(private Point $start, private Point $end)
     {
     }
 

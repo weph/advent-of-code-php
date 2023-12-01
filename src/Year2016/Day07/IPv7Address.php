@@ -6,13 +6,13 @@ namespace AdventOfCode\Year2016\Day07;
 /**
  * @psalm-immutable
  */
-final class IPv7Address
+final readonly class IPv7Address
 {
     /**
      * @param list<string> $supernetSequences
      * @param list<string> $hypernetSequences
      */
-    private function __construct(private readonly array $supernetSequences, private readonly array $hypernetSequences)
+    private function __construct(private array $supernetSequences, private array $hypernetSequences)
     {
     }
 

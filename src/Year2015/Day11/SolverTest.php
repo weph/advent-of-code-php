@@ -52,6 +52,7 @@ final class SolverTest extends TestCase
         yield ['ghijklmn', 'ghjaabcc'];
     }
 
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

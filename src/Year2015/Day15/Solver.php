@@ -10,14 +10,14 @@ use AdventOfCode\Common\PuzzleSolver;
 /**
  * @psalm-immutable
  */
-final class Ingredient
+final readonly class Ingredient
 {
     public function __construct(
-        private readonly int $capacity,
-        private readonly int $durability,
-        private readonly int $flavor,
-        private readonly int $texture,
-        public  readonly int $calories
+        private int $capacity,
+        private int $durability,
+        private int $flavor,
+        private int $texture,
+        public int $calories
     )
     {
     }

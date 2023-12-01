@@ -10,16 +10,16 @@ use AdventOfCode\Common\PuzzleSolver;
 use Generator;
 use RuntimeException;
 
-final class Item
+final readonly class Item
 {
-    public function __construct(public readonly int $cost, public readonly int $damage, public readonly int $armor)
+    public function __construct(public int $cost, public int $damage, public int $armor)
     {
     }
 }
 
-final class Player
+final readonly class Player
 {
-    public function __construct(public readonly int $hitPoints, public readonly int $damage, public readonly int $armor)
+    public function __construct(public int $hitPoints, public int $damage, public int $armor)
     {
     }
 

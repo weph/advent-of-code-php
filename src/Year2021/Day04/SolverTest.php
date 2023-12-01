@@ -51,6 +51,7 @@ final class SolverTest extends TestCase
         self::assertSame(1924, $this->subject->partTwo(Input::fromArray(self::EXAMPLE_INPUT)));
     }
 
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

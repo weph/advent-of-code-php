@@ -48,7 +48,7 @@ final class Solver implements PuzzleSolver
             $code[] = $keypad[$position->y][$position->x];
         }
 
-        return implode($code);
+        return implode('', $code);
     }
 
     public function partTwo(Input $input): string

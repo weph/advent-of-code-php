@@ -10,7 +10,6 @@ final class Combinations
     /**
      * @template T
      * @param array<T> $values
-     * @param int $n
      * @return Generator<list<T>>
      */
     public static function of(array $values, int $n): Generator

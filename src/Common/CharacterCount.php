@@ -8,12 +8,12 @@ use RuntimeException;
 /**
  * @psalm-immutable
  */
-final class CharacterCount
+final readonly class CharacterCount
 {
     /**
      * @param non-empty-array<string, int> $counts
      */
-    private function __construct(private readonly array $counts)
+    private function __construct(private array $counts)
     {
     }
 

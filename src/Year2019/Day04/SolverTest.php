@@ -67,6 +67,7 @@ final class SolverTest extends TestCase
         self::assertSame(1126, $this->subject->partTwo(Input::fromString('197487-673251')));
     }
 
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

@@ -48,7 +48,7 @@ final class Solver implements PuzzleSolver
             }
         }
 
-        return implode(array_map($func, $bitsums));
+        return implode('', array_map($func, $bitsums));
     }
 
     /**
@@ -81,7 +81,7 @@ final class Solver implements PuzzleSolver
      */
     private function oxygenGeneratorRating(array $values): int
     {
-        return (int)bindec($this->filter($values, Closure::fromCallable([$this, 'mostCommon'])));
+        return (int)bindec($this->filter($values, Closure::fromCallable($this->mostCommon(...))));
     }
 
     /**
@@ -105,6 +105,6 @@ final class Solver implements PuzzleSolver
      */
     private function co2ScrubberRating(array $values): int
     {
-        return (int)bindec($this->filter($values, Closure::fromCallable([$this, 'leastCommon'])));
+        return (int)bindec($this->filter($values, Closure::fromCallable($this->leastCommon(...))));
     }
 }

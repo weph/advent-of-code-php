@@ -57,6 +57,6 @@ final class Solver implements PuzzleSolver
             }
         }
 
-        return implode($password);
+        return implode('', $password);
     }
 }

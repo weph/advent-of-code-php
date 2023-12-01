@@ -9,7 +9,7 @@ use AdventOfCode\Common\PuzzleSolver;
 
 function digitsOnlyIncrease(string $password): bool
 {
-    return $password === implode(aoc\sort(str_split($password)));
+    return $password === implode('', aoc\sort(str_split($password)));
 }
 
 function hasSameAdjacentDigits(string $password): bool

@@ -29,7 +29,6 @@ final class Solver implements PuzzleSolver
     }
 
     /**
-     * @param Input $input
      * @return array<string, array<int, int>>
      */
     private function grid(Input $input): array

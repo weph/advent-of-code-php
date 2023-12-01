@@ -55,6 +55,7 @@ final class SolverTest extends TestCase
         yield ['[1,"red",5]', 6];
     }
 
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

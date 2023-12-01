@@ -6,14 +6,14 @@ namespace AdventOfCode\Common;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 
-final class InputLoader
+final readonly class InputLoader
 {
     private const BASE_URL = 'https://adventofcode.com';
 
     public function __construct(
-        private readonly ClientInterface $client,
-        private readonly RequestFactoryInterface $requestFactory,
-        private readonly string $sessionToken
+        private ClientInterface $client,
+        private RequestFactoryInterface $requestFactory,
+        private string $sessionToken
     ) {
     }
 

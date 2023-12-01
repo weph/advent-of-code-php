@@ -8,9 +8,9 @@ use AdventOfCode\Common\Input;
 use AdventOfCode\Common\PuzzleSolver;
 use RuntimeException;
 
-final class Solver implements PuzzleSolver
+final readonly class Solver implements PuzzleSolver
 {
-    public function __construct(private readonly int $preambleLength = 25)
+    public function __construct(private int $preambleLength = 25)
     {
     }
 

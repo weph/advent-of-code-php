@@ -33,6 +33,7 @@ final class SolverTest extends TestCase
         self::assertSame('5DB3', $this->subject->partTwo($input));
     }
 
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

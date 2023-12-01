@@ -7,9 +7,9 @@ use AdventOfCode\Common\Combinations;
 use AdventOfCode\Common\Input;
 use AdventOfCode\Common\PuzzleSolver;
 
-final class Solver implements PuzzleSolver
+final readonly class Solver implements PuzzleSolver
 {
-    public function __construct(private readonly int $liters = 150)
+    public function __construct(private int $liters = 150)
     {
     }
 

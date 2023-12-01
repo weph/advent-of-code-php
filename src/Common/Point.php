@@ -8,9 +8,9 @@ use RuntimeException;
 /**
  * @psalm-immutable
  */
-final class Point
+final readonly class Point
 {
-    public function __construct(public readonly int $x, public readonly int $y)
+    public function __construct(public int $x, public int $y)
     {
     }
 

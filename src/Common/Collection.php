@@ -12,12 +12,12 @@ use function count;
  *
  * @psalm-immutable
  */
-final class Collection
+final readonly class Collection
 {
     /**
      * @param list<T> $items
      */
-    public function __construct(private readonly array $items)
+    public function __construct(private array $items)
     {
     }
 
