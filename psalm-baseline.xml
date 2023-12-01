@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="5.16.0@2897ba636551a8cb61601cc26f6ccfbba6c36591">
+  <file src="src/Common/GridTest.php">
+    <TypeDoesNotContainType>
+      <code>assertSame</code>
+    </TypeDoesNotContainType>
+  </file>
+  <file src="src/Common/Input.php">
+    <ArgumentTypeCoercion>
+      <code>$regex</code>
+    </ArgumentTypeCoercion>
+  </file>
+  <file src="src/Common/Permutations.php">
+    <InvalidReturnStatement>
+      <code>array_merge(...$result)</code>
+    </InvalidReturnStatement>
+    <InvalidReturnType>
+      <code><![CDATA[non-empty-list<list<T>>]]></code>
+    </InvalidReturnType>
+  </file>
+  <file src="src/Year2017/Day02/Solver.php">
+    <InvalidOperand>
+      <code>max($values)</code>
+    </InvalidOperand>
+  </file>
+  <file src="src/Year2019/Day02/SolverTest.php">
+    <UnusedProperty>
+      <code>$subject</code>
+    </UnusedProperty>
+  </file>
+  <file src="src/Year2019/Day04/Solver.php">
+    <InvalidArgument>
+      <code><![CDATA[array_map(intval(...), explode('-', $input->raw(), 2))]]></code>
+    </InvalidArgument>
+  </file>
+  <file src="src/Year2019/Day05/SolverTest.php">
+    <UnusedProperty>
+      <code>$subject</code>
+    </UnusedProperty>
+  </file>
+  <file src="src/Year2020/Day09/Solver.php">
+    <InvalidArrayOffset>
+      <code><![CDATA[$numbers[$i + $this->preambleLength]]]></code>
+    </InvalidArrayOffset>
+    <MixedAssignment>
+      <code>$value</code>
+    </MixedAssignment>
+    <MixedInferredReturnType>
+      <code>int</code>
+    </MixedInferredReturnType>
+    <MixedReturnStatement>
+      <code>$value</code>
+    </MixedReturnStatement>
+  </file>
+  <file src="src/Year2021/Day06/Swarm.php">
+    <PossiblyUndefinedArrayOffset>
+      <code>$next[6]</code>
+      <code>$next[8]</code>
+    </PossiblyUndefinedArrayOffset>
+  </file>
+</files>
