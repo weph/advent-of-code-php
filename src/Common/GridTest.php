@@ -26,6 +26,21 @@ final class GridTest extends TestCase
     }
 
     #[Test]
+    public function string_representation_can_be_modified_using_callback(): void
+    {
+        $grid = new Grid(3, 3, ' ');
+
+        $grid->set(new Point(1, 1), 'X');
+
+        self::assertSame(
+            "[0,0,' '][1,0,' '][2,0,' ']\n" .
+            "[0,1,' '][1,1,'X'][2,1,' ']\n" .
+            "[0,2,' '][1,2,' '][2,2,' ']\n",
+            $grid->asString(static fn(Point $p, string $v) => sprintf("[%d,%d,'%s']", $p->x, $p->y, $v))
+        );
+    }
+
+    #[Test]
     public function values_can_be_processed_by_a_callback_function(): void
     {
         /** @var Grid<int> $grid */

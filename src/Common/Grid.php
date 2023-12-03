@@ -88,7 +88,7 @@ final class Grid
     }
 
     /**
-     * @param null|callable(T):string $func
+     * @param null|callable(Point,T):string $func
      */
     public function asString(callable $func = null): string
     {
@@ -96,10 +96,12 @@ final class Grid
 
         for ($row = 0; $row < $this->rows; $row++) {
             for ($col = 0; $col < $this->cols; $col++) {
+                $point = new Point($col, $row);
+
                 if ($func !== null) {
-                    $result .= $func($this->valueAt(new Point($col, $row)));
+                    $result .= $func($point, $this->valueAt($point));
                 } else {
-                    $result .= (string)$this->valueAt(new Point($col, $row));
+                    $result .= (string)$this->valueAt($point);
                 }
             }
 
